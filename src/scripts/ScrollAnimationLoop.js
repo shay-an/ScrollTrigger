@@ -6,7 +6,7 @@ export default class ScrollAnimationLoop {
 	/**
 	 * ScrollAnimationLoop constructor.
 	 * Starts a requestAnimationFrame loop as long as the user has scrolled the scrollElement. Stops after a certain time.
-	 *
+	 * 初始化一些属性，并且绑定scroll事件
 	 * @param {DefaultOptions.scroll} [options=DefaultOptions.scroll] options The options for the loop
 	 * @param {ScrollCallback} callback [loop=null] The loop callback
 	 */
@@ -105,6 +105,7 @@ export default class ScrollAnimationLoop {
 
 	/**
 	 * Stops the loop, calls the stop callback
+	 * 结束动画循环，调用stop回调
 	 * @private
 	 */
 	_stopRun() {
@@ -117,6 +118,7 @@ export default class ScrollAnimationLoop {
 
 	/**
 	 * The current position of the element
+	 * 该当前元素的坐标
 	 * @returns {{x: number, y: number}}
 	 */
 	getPosition() {
@@ -137,17 +139,19 @@ export default class ScrollAnimationLoop {
 
 	/**
 	 * One single tick of the animation
+	 * 一个单独的动画帧，无限递归调用_loop
 	 * @private
 	 */
 	_tick() {
+		// 执行回调，传入当前的坐标，及方向
 		this.callback(this.position, this.direction)
 
 		const now = this._getTimestamp()
-
+		// 如果超过了sustain时间，就停止
 		if (now - this.lastAction > this.sustain) {
 			this._stopRun()
 		}
-
+		// 如果还在运行，就继续执行
 		if (this.running) {
 			this._loop()
 		}
@@ -155,6 +159,7 @@ export default class ScrollAnimationLoop {
 
 	/**
 	 * Requests an animation frame
+	 * 每帧调用一次_tick
 	 * @private
 	 */
 	_loop() {

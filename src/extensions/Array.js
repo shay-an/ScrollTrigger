@@ -16,6 +16,7 @@ Array.prototype.each = function (fn) {
 
 /**
  * Give NodeList some Array functions
+ * 给NodeList添加一些Array的方法
  */
 NodeList.prototype.each = Array.prototype.each
 NodeList.prototype.filter = Array.prototype.filter

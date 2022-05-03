@@ -1,6 +1,6 @@
 import Trigger from './Trigger'
 import '../extensions/Array'
-
+// 一个标准的集合类，集合管理的就是trigger（触发器），包括增删改查的方法
 export default class TriggerCollection {
 	/**
 	 * Initializes the collection

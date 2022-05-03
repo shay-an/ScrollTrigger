@@ -1,9 +1,11 @@
 /**
  * Default options for ScrollTrigger
+ * 默认选项，这个函数就是一个构造函数，通过new来创建一个默认选项的实例对象
  */
 export default function() {
 	/**
 	 * The default options for a trigger
+	 * 触发器的默认选项
 	 *
 	 * @type {
 	 * {
@@ -58,6 +60,7 @@ export default function() {
 
     /**
      * The `in` callback is called when the element enters the viewport
+	 * 进入视口时调用的回调
      * @callback TriggerInCallback
      * @param {{x: Number, y: Number}} position
      * @param {string} direction
@@ -65,6 +68,7 @@ export default function() {
 
 	/**
 	 * The default options for the scroll behaviour
+	 * 滚动行为的默认选项
 	 * @type {
 	 * {
 	 *  sustain: number,
@@ -87,6 +91,7 @@ export default function() {
 
     /**
      * The scroll callback is called when the user scrolls
+	 * 滚动时调用的回调
      * @callback ScrollCallback
      * @param {{x: Number, y: Number}} position
      * @param {string} direction

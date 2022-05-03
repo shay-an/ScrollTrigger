@@ -14,42 +14,54 @@
  * Created by Erik on 09/07/2017.
  */
 import DefaultOptions from './config/DefaultOptions'
+// 导入默认选项
 import _Trigger from './scripts/Trigger'
 import _TriggerCollection from './scripts/TriggerCollection'
 import _ScrollAnimationLoop from './scripts/ScrollAnimationLoop'
 
 import extend from 'object-extend'
 import './extensions/Array'
-
+//  触发器类
 export const Trigger = _Trigger
+// 触发器收集管理类
 export const TriggerCollection = _TriggerCollection
+// 滚动动画循环类
 export const ScrollAnimationLoop = _ScrollAnimationLoop
+// 默认导出的是 ScrollTrigger 类
+// 这个类主要用来做一些管理，比如触发器的管理，动画的管理等等，并连接了上面的类
 
 export default class ScrollTrigger {
 	/**
 	 * Constructor for the scroll trigger
+	 * 构造函数
 	 * @param {DefaultOptions} [options=DefaultOptions] options
 	 */
 	constructor(options) {
+		// 解析选项
 		this._parseOptions(options)
+		// 初始化集合
 		this._initCollection()
+		// 初始化循环
 		this._initLoop()
 	}
 
 	/**
 	 * Parses the options
+	 * 解析选项
 	 * @param {DefaultOptions} [options=DefaultOptions] options
 	 * @private
 	 */
 	_parseOptions(options) {
+		// 合并传入选项和默认选项
 		options = extend(new DefaultOptions(), options)
-
+		// 将默认选项赋值给 scrollOptions, 默认的触发器是传入的触发器，滚动的选项是配置的选项
 		this.defaultTrigger = options.trigger
 		this.scrollOptions = options.scroll
 	}
 
 	/**
 	 * Initializes the collection, picks all [data-scroll] elements as initial elements
+	 * 初始化集合，挑选所有[data-scroll]元素作为初始元素
 	 * @private
 	 */
 	_initCollection() {
@@ -189,6 +201,7 @@ export default class ScrollTrigger {
 		}
 
 		// assume it's a query string
+		// 使用 querySelectorAll 获取DOM元素
 		this.collection.add(this.createTriggers(document.querySelectorAll(objects), options))
 
 		return this

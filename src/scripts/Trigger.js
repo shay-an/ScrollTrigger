@@ -9,7 +9,7 @@ function isInt(n) {
 function isFloat(n) {
 	return Number(n) === n && n % 1 !== 0
 }
-
+// 默认导出的是触发器类
 export default class Trigger {
 	/**
 	 * Creates a new Trigger from the given element and options
@@ -31,6 +31,7 @@ export default class Trigger {
 
 	/**
 	 * Checks if the Trigger is in the viewport, calls the callbacks and toggles the classes
+	 * 检查触发器是否在视口内，调用回调函数并切换类
 	 * @param {HTMLElement|HTMLDocument|Window} parent
 	 * @param {string} direction top, bottom, left, right
 	 * @returns {boolean} If the element is visible
@@ -76,6 +77,7 @@ export default class Trigger {
 
 	/**
 	 * Get the bounds of this element
+	 * 获取元素的边界
 	 * @return {ClientRect | DOMRect}
 	 */
 	getBounds() {
@@ -84,6 +86,7 @@ export default class Trigger {
 
 	/**
 	 * Get the calculated offset to place on the element
+	 * 获取计算的偏移量
 	 * @param {ClientRect} rect
 	 * @param {string} direction top, bottom, left, right
 	 * @returns {{x: number, y: number}}
@@ -113,6 +116,7 @@ export default class Trigger {
 
 	/**
 	 * Get the calculated offset to place on the viewport
+	 * 获取计算的偏移量与视口关联
 	 * @param {{w: number, h: number}} parent
 	 * @param {string} direction top, bottom, left, right
 	 * @returns {{x: number, y: number}}
@@ -142,6 +146,7 @@ export default class Trigger {
 
 	/**
 	 * Check the visibility of the trigger in the viewport, with offsets applied
+	 * 检查触发器是否在视口内，并应用偏移量
 	 * @param {ClientRect} rect
 	 * @param {{w: number, h: number}} parent
 	 * @param {string} direction top, bottom, left, right
@@ -175,6 +180,7 @@ export default class Trigger {
 
 	/**
 	 * Toggles the classes
+	 * 切换类名
 	 * @private
 	 */
 	_toggleClass() {
@@ -217,6 +223,7 @@ export default class Trigger {
 
 	/**
 	 * Toggles the callback
+	 * 切换回调，如果触发器在视口内，则调用回调in 否则调用out
 	 * @private
 	 * @return null|Promise
 	 */
